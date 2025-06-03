@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@import 'react-toastify/dist/ReactToastify.css';
+
+
+:root {
+  --toastify-color-transparent: rgba(207, 93, 93, 0.7);
+}
