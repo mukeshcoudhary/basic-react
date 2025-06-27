@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, memo } from "react";
+import { Link, Outlet,NavLink } from "react-router-dom";
 import Dark from "../Dark";
 
 function Navebar(props) {
   const [count, setCount] = useState(1);
 
-  const {setToken} = props
+  const { setToken } = props
 
   const incCount = () => {
     setCount(count + 1);
@@ -41,8 +42,7 @@ function Navebar(props) {
       >
         {props.productv == "" ? (
           <h2>NO - ITEM</h2>
-        ) : (
-          props.productv.map((a, i) => {
+        ) : (props.productv.map((a, i) => {
             return (
               <div className="card mt-4 " key={a.id}>
                 <div className="flex p-3">
@@ -105,7 +105,19 @@ function Navebar(props) {
 
       <div className="flex p-4 justify-between">
         <h2 className=""> WellCome Mukesh</h2>
-
+        {/* <Link to="login">login</Link>  */}
+        <NavLink className={({isActiv})=>(isActiv?"text-blue-500":"text-red-600")} to="/">Home</NavLink>
+        <NavLink className={({isActiv})=>(isActiv?"text-blue-500":"text-red-600")} to="card">card</NavLink>
+        <NavLink className={({isActiv})=>(isActiv?"text-blue-500":"text-red-600")} to="weather">Weather</NavLink>
+        <NavLink className={({isActiv})=>(isActiv?"text-blue-500":"text-red-600")} to="Form">Form</NavLink>
+        <NavLink className={({isActiv})=>(isActiv?"text-blue-500":"text-red-600")} to="Notes">Notes</NavLink>
+        <NavLink className={({isActiv})=>(isActiv?"text-blue-500":"text-red-600")} to="Github">Github</NavLink>
+        <NavLink className={({isActiv})=>(isActiv?"text-blue-500":"text-red-600")} to="Form2">Form2</NavLink>
+        <NavLink className={({isActiv})=>(isActiv?"text-blue-500":"text-red-600")} to="Feedback">Feedback</NavLink>
+        <NavLink className={({isActiv})=>(isActiv?"text-blue-500":"text-red-600")} to="Mood">Mood</NavLink>
+        <main>
+          <Outlet />
+        </main>
 
         <div className="flex align-middle gap-2">
           <select
@@ -141,10 +153,10 @@ function Navebar(props) {
           </button>
         </div>
       </div>
-        <Dark />
-      
+      <Dark />
+
     </>
   );
 }
 
-export default Navebar;
+export default memo(Navebar);
